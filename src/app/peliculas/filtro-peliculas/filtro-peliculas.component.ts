@@ -12,6 +12,12 @@ export class FiltroPeliculasComponent implements OnInit {
 
   form!: FormGroup;
 
+  generos = [
+    { id: 1, nombre: 'Drama'},
+    { id: 2, nombre: 'Acción'},
+    { id: 3, nombre: 'Comedia'},
+  ]
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       titulo: '',
