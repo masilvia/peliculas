@@ -1,5 +1,5 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { actorCreacionDTO } from '../actor';
@@ -15,6 +15,9 @@ export class FormularioActoresComponent implements OnInit {
 
   form!: FormGroup;
 
+  @Input()
+  modelo!: actorCreacionDTO;
+
   @Output()
   submit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>()
 
@@ -23,6 +26,10 @@ export class FormularioActoresComponent implements OnInit {
       nombre: ['',{ validators: [Validators.required], },],
       fechaNacimiento: ''
     });
+
+    if (this.modelo !== undefined){
+      this.form.patchValue(this.modelo)
+    }
   }
 
   onSubmit(){
